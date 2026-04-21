@@ -6,11 +6,9 @@ project('macos-rdp-server', ['c', 'objc'],
         'c_std=c11',
     ])
 
-# Compilers
 cc = meson.get_compiler('c')
 objc = meson.get_compiler('objc')
 
-# Dependencies
 glib_dep = dependency('glib-2.0', version: '>= 2.70.0')
 gio_dep = dependency('gio-2.0')
 cairo_dep = dependency('cairo')
@@ -18,7 +16,6 @@ freerdp_dep = dependency('freerdp3', version: '>= 3.0.0')
 freerdp_server_dep = dependency('freerdp-server3', version: '>= 3.0.0')
 winpr_dep = dependency('winpr3', version: '>= 3.0.0')
 
-# macOS Frameworks
 coregraphics_dep = dependency('appleframeworks', modules: ['CoreGraphics'])
 coremedia_dep = dependency('appleframeworks', modules: ['CoreMedia'])
 corevideo_dep = dependency('appleframeworks', modules: ['CoreVideo'])
@@ -51,27 +48,31 @@ all_deps = [
     iokit_dep,
 ]
 
-# Source files
 sources = files(
     'src/main.c',
     'src/rdp/mrd-rdp-server.c',
     'src/rdp/mrd-session-rdp.c',
+    'src/rdp/mrd-session-rdp-frame.c',
+    'src/rdp/mrd-session-rdp-cursor.c',
+    'src/rdp/mrd-session-rdp-handshake.c',
     'src/rdp/mrd-rdp-graphics-pipeline.c',
-    'src/rdp/mrd-rdp-gfx-surface.c',
+    'src/rdp/mrd-rdp-disp.c',
+    'src/rdp/mrd-rdp-clipboard.m',
+    'src/rdp/mrd-rdp-audio.c',
     'src/platform/mrd-screen-capture.m',
     'src/platform/mrd-virtual-display.m',
     'src/platform/mrd-input-injector.m',
     'src/platform/mrd-cursor-capture.m',
     'src/encoding/mrd-encode-session.m',
+    'src/util/mrd-auth.c',
     'src/util/mrd-bitstream.c',
     'src/util/mrd-damage-utils.c',
+    'src/util/mrd-telemetry.c',
 )
 
-# Include directories
 inc = include_directories('src')
 
-# Main executable
-exe = executable('macos-rdp-server',
+exe = executable('rdp-server',
     sources,
     dependencies: all_deps,
     include_directories: inc,
@@ -81,7 +82,7 @@ exe = executable('macos-rdp-server',
 
 codesign = find_program('codesign')
 custom_target('codesign',
-    output: 'macos-rdp-server.signed',
+    output: 'rdp-server.signed',
     input: exe,
     command: [codesign, '--force', '--sign', '-', '@INPUT@'],
     build_by_default: true,

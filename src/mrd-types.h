@@ -1,25 +1,14 @@
 #pragma once
+
 #include <glib.h>
 
-typedef struct _MrdContext MrdContext;
 typedef struct _MrdSessionRdp MrdSessionRdp;
 typedef struct _MrdRdpServer MrdRdpServer;
-
 typedef struct _MrdEncodeSession MrdEncodeSession;
-typedef struct _MrdEncodeContext MrdEncodeContext;
-typedef struct _MrdHwAccelMetal MrdHwAccelMetal;
-
-typedef struct _MrdRdpFrame MrdRdpFrame;
-typedef struct _MrdRdpGfxSurface MrdRdpGfxSurface;
-typedef struct _MrdRdpRenderContext MrdRdpRenderContext;
-typedef struct _MrdRdpRenderer MrdRdpRenderer;
 typedef struct _MrdRdpGraphicsPipeline MrdRdpGraphicsPipeline;
-
-typedef struct _MrdRdpBuffer MrdRdpBuffer;
-typedef struct _MrdRdpBufferPool MrdRdpBufferPool;
-typedef struct _MrdImageView MrdImageView;
+typedef struct _MrdRdpDisp MrdRdpDisp;
+typedef struct _MrdRdpAudio MrdRdpAudio;
 typedef struct _MrdBitstream MrdBitstream;
-
 typedef struct _MrdScreenCapture MrdScreenCapture;
 typedef struct _MrdInputInjector MrdInputInjector;
 

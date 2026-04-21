@@ -1,18 +1,27 @@
+//
+//  CGVirtualDisplayPrivate.h
+//
+
 #import <Cocoa/Cocoa.h>
 #import <CoreGraphics/CoreGraphics.h>
+
 NS_ASSUME_NONNULL_BEGIN
+
 @class CGVirtualDisplayDescriptor;
+
 @interface CGVirtualDisplayMode : NSObject
 @property(readonly, nonatomic) CGFloat refreshRate;
 @property(readonly, nonatomic) NSUInteger width;
 @property(readonly, nonatomic) NSUInteger height;
 - (instancetype)initWithWidth:(NSUInteger)arg1 height:(NSUInteger)arg2 refreshRate:(CGFloat)arg3;
 @end
+
 @interface CGVirtualDisplaySettings : NSObject
 @property(nonatomic) unsigned int hiDPI;
 @property(retain, nonatomic) NSArray<CGVirtualDisplayMode *> *modes;
 - (instancetype)init;
 @end
+
 @interface CGVirtualDisplay : NSObject
 @property(readonly, nonatomic) NSArray *modes;
 @property(readonly, nonatomic) unsigned int hiDPI;
@@ -29,6 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithDescriptor:(CGVirtualDisplayDescriptor *)arg1;
 - (BOOL)applySettings:(CGVirtualDisplaySettings *)arg1;
 @end
+
 @interface CGVirtualDisplayDescriptor : NSObject
 @property(retain, nonatomic) dispatch_queue_t queue;
 @property(retain, nonatomic) NSString *name;
@@ -47,4 +57,5 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable dispatch_queue_t)dispatchQueue;
 - (void)setDispatchQueue:(dispatch_queue_t)arg1;
 @end
+
 NS_ASSUME_NONNULL_END

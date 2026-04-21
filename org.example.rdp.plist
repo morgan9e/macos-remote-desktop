@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Label</key>
-	<string>org.example.rdp</string>
+	<string>org.example.rdp-server</string>
 	<key>ProgramArguments</key>
 	<array>
 		<string>__EXEC__</string>
